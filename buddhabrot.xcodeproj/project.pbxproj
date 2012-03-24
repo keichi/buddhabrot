@@ -1,0 +1,206 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB235CD8151DB87100800359 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB235CD7151DB87100800359 /* main.cpp */; };
+		CB235CE1151DB88100800359 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB235CE0151DB88100800359 /* OpenCL.framework */; };
+		CB235CE4151DC30600800359 /* kernel.cl in Sources */ = {isa = PBXBuildFile; fileRef = CB235CE3151DC30600800359 /* kernel.cl */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CB235CD3151DB87100800359 /* buddhabrot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = buddhabrot; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB235CD7151DB87100800359 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CB235CE0151DB88100800359 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
+		CB235CE2151DB8DC00800359 /* cl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cl.hpp; sourceTree = "<group>"; };
+		CB235CE3151DC30600800359 /* kernel.cl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.opencl; path = kernel.cl; sourceTree = "<group>"; };
+		CB235CE5151DC34700800359 /* cl_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cl_util.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB235CD0151DB87100800359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB235CE1151DB88100800359 /* OpenCL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB235CC8151DB87100800359 = {
+			isa = PBXGroup;
+			children = (
+				CB235CE0151DB88100800359 /* OpenCL.framework */,
+				CB235CD6151DB87100800359 /* buddhabrot */,
+				CB235CD4151DB87100800359 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB235CD4151DB87100800359 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB235CD3151DB87100800359 /* buddhabrot */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB235CD6151DB87100800359 /* buddhabrot */ = {
+			isa = PBXGroup;
+			children = (
+				CB235CE2151DB8DC00800359 /* cl.hpp */,
+				CB235CD7151DB87100800359 /* main.cpp */,
+				CB235CE3151DC30600800359 /* kernel.cl */,
+				CB235CE5151DC34700800359 /* cl_util.hpp */,
+			);
+			path = buddhabrot;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB235CD2151DB87100800359 /* buddhabrot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB235CDD151DB87100800359 /* Build configuration list for PBXNativeTarget "buddhabrot" */;
+			buildPhases = (
+				CB235CCF151DB87100800359 /* Sources */,
+				CB235CD0151DB87100800359 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = buddhabrot;
+			productName = buddhabrot;
+			productReference = CB235CD3151DB87100800359 /* buddhabrot */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB235CCA151DB87100800359 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Osaka University";
+			};
+			buildConfigurationList = CB235CCD151DB87100800359 /* Build configuration list for PBXProject "buddhabrot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CB235CC8151DB87100800359;
+			productRefGroup = CB235CD4151DB87100800359 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB235CD2151DB87100800359 /* buddhabrot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB235CCF151DB87100800359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB235CD8151DB87100800359 /* main.cpp in Sources */,
+				CB235CE4151DC30600800359 /* kernel.cl in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CB235CDB151DB87100800359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CB235CDC151DB87100800359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CB235CDE151DB87100800359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CB235CDF151DB87100800359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB235CCD151DB87100800359 /* Build configuration list for PBXProject "buddhabrot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB235CDB151DB87100800359 /* Debug */,
+				CB235CDC151DB87100800359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB235CDD151DB87100800359 /* Build configuration list for PBXNativeTarget "buddhabrot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB235CDE151DB87100800359 /* Debug */,
+				CB235CDF151DB87100800359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB235CCA151DB87100800359 /* Project object */;
+}

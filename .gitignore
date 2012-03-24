@@ -1,0 +1,41 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+# hidden/temp files
+.DS_Store
+*.swp
+*~.nib
+
+# Xcode project files except for the project file
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+mandelbrot.xcodeproj/project.xcworkspace/xcuserdata/Keichi.xcuserdatad/UserInterfaceState.xcuserstate
