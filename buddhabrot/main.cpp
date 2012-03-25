@@ -14,6 +14,8 @@
 #include "cl.hpp"
 #include "cl_util.hpp"
 
+#define VECTOR_DIMENSION    (10)
+
 int main(int argc, const char * argv[])
 {
     std::vector<cl::Platform> platforms;
@@ -41,15 +43,31 @@ int main(int argc, const char * argv[])
         cl::CommandQueue queue(context, devices[0]);
         
         cl::Program program = load_cl_program("OpenCL/kernel.cl.x86_64.bc", context);
-        cl::Kernel kernel(program, "hello");
-        cl::Buffer buffer(context, CL_MEM_READ_WRITE, 6);
-        kernel.setArg(0, buffer);
+        cl::Kernel vector_add(program, "vector_add");
         
-        queue.enqueueNDRangeKernel(kernel, cl::NullRange, cl::NDRange(1), cl::NullRange, NULL);
+        float abuf[VECTOR_DIMENSION];
+        float bbuf[VECTOR_DIMENSION];
+        float cbuf[VECTOR_DIMENSION];
         
-        char mem[6];
-        queue.enqueueReadBuffer(buffer, CL_TRUE, 0, 6, mem);
-        printf("%s\n", mem);
+        for (int i = 0; i < VECTOR_DIMENSION; i++) {
+            abuf[i] = i;
+            bbuf[i] = 1;
+        }
+        
+        cl::Buffer a(context, CL_MEM_READ_ONLY|CL_MEM_USE_HOST_PTR, VECTOR_DIMENSION * sizeof(float), abuf);
+        cl::Buffer b(context, CL_MEM_READ_ONLY|CL_MEM_USE_HOST_PTR, VECTOR_DIMENSION * sizeof(float), bbuf);
+        cl::Buffer c(context, CL_MEM_WRITE_ONLY, VECTOR_DIMENSION * sizeof(float));
+        vector_add.setArg(0, a);
+        vector_add.setArg(1, b);
+        vector_add.setArg(2, c);
+        
+        queue.enqueueNDRangeKernel(vector_add, cl::NullRange, cl::NDRange(VECTOR_DIMENSION), cl::NullRange);
+        
+        queue.enqueueReadBuffer(c, CL_TRUE, 0, VECTOR_DIMENSION * sizeof(float), cbuf);
+        
+        for (int i = 0; i < VECTOR_DIMENSION; i++) {
+            printf("%f\n", cbuf[i]);
+        }
     }
     
     return 0;
