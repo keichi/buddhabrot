@@ -38,14 +38,18 @@ int main(int argc, const char * argv[])
         }
         
         cl::Context::Context context(devices);
-        cl::Program program = load_cl_program("kernel.cl", context);
-        cl::Kernel kernel(program, "hello");
-        
         cl::CommandQueue queue(context, devices[0]);
         
-        cl::Event ev;
-        queue.enqueueNDRangeKernel(kernel, cl::NullRange, cl::NDRange(4, 4), cl::NullRange, NULL, &ev);
-        ev.wait();
+        cl::Program program = load_cl_program("OpenCL/kernel.cl.x86_64.bc", context);
+        cl::Kernel kernel(program, "hello");
+        cl::Buffer buffer(context, CL_MEM_READ_WRITE, 6);
+        kernel.setArg(0, buffer);
+        
+        queue.enqueueNDRangeKernel(kernel, cl::NullRange, cl::NDRange(1), cl::NullRange, NULL);
+        
+        char mem[6];
+        queue.enqueueReadBuffer(buffer, CL_TRUE, 0, 6, mem);
+        printf("%s\n", mem);
     }
     
     return 0;

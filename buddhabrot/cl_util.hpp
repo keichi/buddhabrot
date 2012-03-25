@@ -44,16 +44,21 @@ void print_device_info(const cl::Device& device) {
 cl::Program load_cl_program(const char* filename, const cl::Context& context) {
     std::vector<cl::Device> devices = context.getInfo<CL_CONTEXT_DEVICES>();
         
-    std::ifstream ifs(filename);
-    std::istreambuf_iterator<char> begin(ifs);
-    std::istreambuf_iterator<char> end;
-    std::string contents(begin, end);
-    cl::Program::Sources sources(1, std::make_pair(contents.c_str(), contents.size()));
-
-    cl::Program::Program program(context, sources);
-    program.build(devices);
+#ifdef __APPLE__
+    cl::Program::Binaries binaries(1, std::make_pair(filename, strlen(filename)));
+    cl::Program program(context,devices,binaries);
+#else
+    std::ifstream ifs(filename, std::ios::in|std::ios::binary);
+    std::vector<char> binary;
+    std::istreambuf_iterator<char> first(ifs);
+    std::istreambuf_iterator<char> last;
+    std::copy(first, last, back_inserter(binary));
     
+    cl::Program::Binaries binaries;
+    binaries.push_back(std::make_pair(static_cast<void*>(&binary[0]),binary.size()));
     ifs.close();
+#endif
+    program.build(devices);
     
     return program;
 }
