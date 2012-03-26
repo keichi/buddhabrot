@@ -1,31 +1,31 @@
-__kernel void vector_add(__global float *a, __global float *b, __global float *c) {
-    int i = get_global_id(0);
-    
-    c[i] = a[i] + b[i];
-}
-
-__kernel void get_mandelbrot_image(__global uchar* image) {
-    float x = (float)get_global_id(0) / get_global_size(0) * 3 - 2;
-    float y = (float)get_global_id(1) / get_global_size(1) * 2 - 1;
-    int width = get_global_size(0);
-    
-    float2 z = (float2)(0, 0);
+__kernel void get_buddhabrot_image(
+                                   __global unsigned int *image,
+                                   __global float  *cx,
+                                   __global float *cy,
+                                   int width,
+                                   int height
+                                   ) {
     int count = -1;
+    float2 z = (float2)(0, 0);
+    float2 nz = (float2)(0, 0);
+    float2 c = (float2)(cx[get_global_id(0)], cy[get_global_id(0)]);
+    __local float2 z_history[1024];
     
-    for (int i = 0; i < 100; i++) {
-        float2 nz = (float2)(0, 0);
-        nz.x = z.x * z.x  - z.y * z.y + x;
-        nz.y = 2.0 * z.x * z.y + y;
+    for (int i = 0; i < 1024; i++) {
+        nz.x = z.x * z.x  - z.y * z.y + c.x;
+        nz.y = 2.0 * z.x * z.y + c.y;
         if (length(nz) > 2) {
             count = i;
             break;
         }
+        z_history[i] = nz;
         z = nz;
     }
     
-    if (count == -1) {
-        image[get_global_id(0) + get_global_id(1) * width] = 0xff;
-    } else {
-        image[get_global_id(0) + get_global_id(1) * width] = 0x0;
+    for (int i = 0; i < count; i++) {
+        int ix = (int)(z_history[i].x * width / 4 + width / 2);
+        int iy = (int)(z_history[i].y * height / 4 + height / 2);
+        
+        atomic_inc(&image[ix + iy * width]);
     }
 }
