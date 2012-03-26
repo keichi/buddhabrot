@@ -16,7 +16,7 @@
 #include "cl_util.hpp"
 
 #define IMAGE_WIDTH     (1200)
-#define IMAGE_HEIGHT    (600)
+#define IMAGE_HEIGHT    (800)
 
 int main(int argc, const char * argv[])
 {
